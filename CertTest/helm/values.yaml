@@ -1,0 +1,16 @@
+replicaCount: 1
+image:
+  repository: your-docker-repo/certtest
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 8080
+database:
+  url: jdbc:h2:mem:testdb
+  username: sa
+  password: Apple@2020
+  driver: org.h2.Driver
+route:
+  host: certtest-app
+  domain: apps.openshift.com 

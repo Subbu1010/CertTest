@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "certtest.fullname" . }}-db-config
+  labels:
+    app: {{ include "certtest.name" . }}
+data:
+  DB_URL: "{{ .Values.database.url }}"
+  DB_USERNAME: "{{ .Values.database.username }}"
+  DB_DRIVER: "{{ .Values.database.driver }}" 

@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "certtest.fullname" . }}
+  labels:
+    app: {{ include "certtest.name" . }}
+spec:
+  host: {{ .Values.route.host | default (printf "%s-%s.%s" (include "certtest.fullname" .) .Release.Namespace .Values.route.domain) }}
+  to:
+    kind: Service
+    name: {{ include "certtest.fullname" . }}
+    weight: 100
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect 
